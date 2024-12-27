@@ -1,10 +1,25 @@
-const users = [
-    { username: "boniel", password: "joel" },
-    { username: "admin", password: "admin" }
-];
+//admin page starts
+// Utility functions for LocalStorage
+function loadUsers() {
+    return JSON.parse(localStorage.getItem("users")) || [];
+}
+
+function saveUsers(users) {
+    localStorage.setItem("users", JSON.stringify(users));
+}
+
+// Initialize users if not present in LocalStorage
+if (!localStorage.getItem("users")) {
+    saveUsers([
+        { username: "boniel", password: "joel" },
+        { username: "admin", password: "admin" }
+    ]);
+}
+////////////////////////////////////////////////////////////////////////////
 
 // Render the list of users in the HTML
 function renderUsers() {
+    const users = loadUsers();
     const userList = document.getElementById("userList");
     userList.innerHTML = ""; // Clear the list before re-rendering
 
@@ -41,15 +56,17 @@ function addUser() {
         return;
     }
 
+    const users = loadUsers();
+
     // Check if the username already exists
-    if (users.some(user => user.username === newUsername)) {
-        alert("Username already exists.");
+    if (users.some((user) => user.username === newUsername)) {
+        alert("Username already exists. Please choose another.");
         return;
     }
 
-    // Add the new user
-    const newUser = { username: newUsername, password: newPassword };
-    users.push(newUser);
+     // Add the new user
+     users.push({ username: newUsername, password: newPassword });
+     saveUsers(users);
 
     // Clear input fields
     document.getElementById("newUsername").value = "";
@@ -61,19 +78,16 @@ function addUser() {
 
 // Function to delete a user
 function deleteUser(username) {
-    const userIndex = users.findIndex(user => user.username === username);
-    if (userIndex !== -1) {
-        users.splice(userIndex, 1);
-        renderUsers();
-    } else {
-        console.log(`User not found: ${username}`);
-    }
+    const users = loadUsers();
+    const updatedUsers = users.filter((user) => user.username !== username);
+    saveUsers(updatedUsers);
+    renderUsers();
 }
 
 // Function to open the modify form with the user details
 function openModifyForm(username) {
     document.getElementById("modify-user-section").style.display = "block";
-    const user = users.find(user => user.username === username);  // Find the correct user
+    const user = loadUsers().find((user) => user.username === username);
     if (user) {
         document.getElementById("modifyUsername").value = user.username;
         document.getElementById("modifiedPassword").value = user.password;
@@ -93,12 +107,12 @@ function modifyUser(originalUsername) {
         return;
     }
 
-    // Find the user to modify
-    const user = users.find(user => user.username === originalUsername);
+    const users = loadUsers();
+    const user = users.find((user) => user.username === originalUsername);
     if (user) {
         user.username = newUsername;
         user.password = newPassword;
-
+        saveUsers(users);
         // Clear input fields
         document.getElementById("modifyUsername").value = "";
         document.getElementById("modifiedPassword").value = "";
@@ -119,17 +133,34 @@ document.getElementById("add-user-btn").addEventListener('click', addUser);
 
 // Call renderUsers to initially populate the list
 document.addEventListener('DOMContentLoaded', renderUsers);
+//adminpage ends
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
 
 let toggler = document.querySelector('#togglerMode');
-    
-    toggler.onclick = () =>{
-    
-        if(toggler.classList.contains('fa-sun')){
-            toggler.classList.replace('fa-sun', 'fa-moon');
-            document.body.classList.add('active');
-        }else{
-            toggler.classList.replace('fa-moon', 'fa-sun');
-            document.body.classList.remove('active');
-        }
-    }
 
+// Check the saved theme state from localStorage when the page loads
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme === 'dark') {
+    document.body.classList.add('active');
+    toggler.classList.replace('fa-sun', 'fa-moon');
+} else {
+    document.body.classList.remove('active');
+    toggler.classList.replace('fa-moon', 'fa-sun');
+}
+
+// Toggle the theme when the user clicks the icon
+toggler.onclick = () => {
+    if (toggler.classList.contains('fa-sun')) {
+        // Switch to dark mode
+        toggler.classList.replace('fa-sun', 'fa-moon');
+        document.body.classList.add('active');
+        localStorage.setItem('theme', 'dark'); // Save the theme state to localStorage
+    } else {
+        // Switch to light mode
+        toggler.classList.replace('fa-moon', 'fa-sun');
+        document.body.classList.remove('active');
+        localStorage.setItem('theme', 'light'); // Save the theme state to localStorage
+    }
+}

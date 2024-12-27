@@ -121,15 +121,28 @@ document.addEventListener('click', function (event) {
 renderInventory();
 
 let toggler = document.querySelector('#togglerMode');
-    
-    toggler.onclick = () =>{
-    
-        if(toggler.classList.contains('fa-sun')){
-            toggler.classList.replace('fa-sun', 'fa-moon');
-            document.body.classList.add('active');
-        }else{
-            toggler.classList.replace('fa-moon', 'fa-sun');
-            document.body.classList.remove('active');
-        }
-    }
 
+// Check the saved theme state from localStorage when the page loads
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme === 'dark') {
+    document.body.classList.add('active');
+    toggler.classList.replace('fa-sun', 'fa-moon');
+} else {
+    document.body.classList.remove('active');
+    toggler.classList.replace('fa-moon', 'fa-sun');
+}
+
+// Toggle the theme when the user clicks the icon
+toggler.onclick = () => {
+    if (toggler.classList.contains('fa-sun')) {
+        // Switch to dark mode
+        toggler.classList.replace('fa-sun', 'fa-moon');
+        document.body.classList.add('active');
+        localStorage.setItem('theme', 'dark'); // Save the theme state to localStorage
+    } else {
+        // Switch to light mode
+        toggler.classList.replace('fa-moon', 'fa-sun');
+        document.body.classList.remove('active');
+        localStorage.setItem('theme', 'light'); // Save the theme state to localStorage
+    }
+}

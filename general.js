@@ -131,8 +131,34 @@ function closeLike() {
 
 
 // Select the dropdown toggle and menu
+const isLoggedIn = localStorage.getItem("isLoggedIn");
 const userDropdown = document.querySelector('.user-dropdown');
 const dropdownMenu = document.querySelector('.dropdown-menu');
+const dropdownItem = document.querySelector(".dropdown-item");
+
+// Check login status and update dropdown text
+if (isLoggedIn) {
+    // If the user is logged in, show "Logout"
+    dropdownItem.textContent = "Logout";
+    dropdownItem.href = "#"; // Set link to trigger logout action
+} else {
+    // If the user is not logged in, show "Login"
+    dropdownItem.textContent = "Login";
+    dropdownItem.href = "login.html"; // Redirect to login page
+}
+
+// Add event listener for logout
+dropdownItem.addEventListener("click", function (e) {
+    if (isLoggedIn) {
+        e.preventDefault(); // Prevent default behavior (if logout)
+        // Remove the login data from localStorage
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("username");
+
+        // Redirect to login page
+        window.location.href = "login.html"; // Redirect to login page
+    }
+});
 
 // Toggle the dropdown menu on click of the user icon
 userDropdown.addEventListener('click', function (event) {
@@ -172,14 +198,28 @@ function closeMore() {
 
 
 let toggler = document.querySelector('#togglerMode');
-    
-toggler.onclick = () =>{
 
-    if(toggler.classList.contains('fa-sun')){
+// Check the saved theme state from localStorage when the page loads
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme === 'dark') {
+    document.body.classList.add('active');
+    toggler.classList.replace('fa-sun', 'fa-moon');
+} else {
+    document.body.classList.remove('active');
+    toggler.classList.replace('fa-moon', 'fa-sun');
+}
+
+// Toggle the theme when the user clicks the icon
+toggler.onclick = () => {
+    if (toggler.classList.contains('fa-sun')) {
+        // Switch to dark mode
         toggler.classList.replace('fa-sun', 'fa-moon');
         document.body.classList.add('active');
-    }else{
+        localStorage.setItem('theme', 'dark'); // Save the theme state to localStorage
+    } else {
+        // Switch to light mode
         toggler.classList.replace('fa-moon', 'fa-sun');
         document.body.classList.remove('active');
+        localStorage.setItem('theme', 'light'); // Save the theme state to localStorage
     }
 }

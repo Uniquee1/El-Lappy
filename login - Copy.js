@@ -1,9 +1,7 @@
-const users = JSON.parse(localStorage.getItem("users")) || [];
-
-function saveUsers(users) {
-    localStorage.setItem("users", JSON.stringify(users));
-}
-
+// Define valid credentials
+const users = [
+    { username: "boniel", password: "joel" },
+];
 const adminUsername = "admin";
 const adminPassword = "admin";
 
@@ -23,6 +21,9 @@ document.querySelector("#loginForm").addEventListener("submit", function (e) {
     const user = users.find(user => user.username === username && user.password === password);
 
     if (username === adminUsername && password === adminPassword) {
+        localStorage.setItem('isLoggedIn', true);
+        localStorage.setItem('username', username);
+
         // Successful login
         loginMessage.textContent = "Login successful! Redirecting to Admin Panel...";
 
@@ -84,7 +85,7 @@ document.querySelector("#addUserForm Form").addEventListener("submit", function 
     addUserSuccessMessage.textContent = "";
 
     // Check if the new username already exists
-    if (users.some((user) => user.username === newUsername)) {
+    if (users.some(user => user.username === newUsername)) {
         addUserErrorMessage.textContent = "Username already exists. Please choose another one.";
         setTimeout(() => {
             addUserErrorMessage.textContent = "";
@@ -98,8 +99,6 @@ document.querySelector("#addUserForm Form").addEventListener("submit", function 
 
     // Add the new user to the array
     users.push({ username: newUsername, password: newPassword });
-     saveUsers(users);
-
 
     // Display success message
     addUserSuccessMessage.textContent = "New user added successfully!";
@@ -244,81 +243,17 @@ function closeLike() {
     likeSection.style.display = 'none';
 }
 
-////////////////////////////////
-
-// Select the dropdown toggle and menu
-const isLoggedIn = localStorage.getItem("isLoggedIn");
-const userDropdown = document.querySelector('.user-dropdown');
-const dropdownMenu = document.querySelector('.dropdown-menu');
-const dropdownItem = document.querySelector(".dropdown-item");
-
-// Check login status and update dropdown text
-if (isLoggedIn) {
-    // If the user is logged in, show "Logout"
-    dropdownItem.textContent = "Logout";
-    dropdownItem.href = "#"; // Set link to trigger logout action
-} else {
-    // If the user is not logged in, show "Login"
-    dropdownItem.textContent = "Login";
-    dropdownItem.href = "login.html"; // Redirect to login page
-}
-
-// Add event listener for logout
-dropdownItem.addEventListener("click", function (e) {
-    if (isLoggedIn) {
-        e.preventDefault(); // Prevent default behavior (if logout)
-        // Remove the login data from localStorage
-        localStorage.removeItem("isLoggedIn");
-        localStorage.removeItem("username");
-
-        // Redirect to login page
-        window.location.href = "login.html"; // Redirect to login page
-    }
-});
-
-// Toggle the dropdown menu on click of the user icon
-userDropdown.addEventListener('click', function (event) {
-    // Prevent page refresh for the user icon click only
-    const target = event.target;
-    if (target.tagName === 'A' && target.classList.contains('fa-user')) {
-        event.preventDefault();
-    }
-
-    event.stopPropagation(); 
-    this.classList.toggle('active'); 
-});
-
-// Close the dropdown when clicking outside of it
-document.addEventListener('click', function () {
-    userDropdown.classList.remove('active'); 
-    
-});
-
 //////////////////////
 
 let toggler = document.querySelector('#togglerMode');
-
-// Check the saved theme state from localStorage when the page loads
-const currentTheme = localStorage.getItem('theme');
-if (currentTheme === 'dark') {
-    document.body.classList.add('active');
-    toggler.classList.replace('fa-sun', 'fa-moon');
-} else {
-    document.body.classList.remove('active');
-    toggler.classList.replace('fa-moon', 'fa-sun');
-}
-
-// Toggle the theme when the user clicks the icon
-toggler.onclick = () => {
-    if (toggler.classList.contains('fa-sun')) {
-        // Switch to dark mode
-        toggler.classList.replace('fa-sun', 'fa-moon');
-        document.body.classList.add('active');
-        localStorage.setItem('theme', 'dark'); // Save the theme state to localStorage
-    } else {
-        // Switch to light mode
-        toggler.classList.replace('fa-moon', 'fa-sun');
-        document.body.classList.remove('active');
-        localStorage.setItem('theme', 'light'); // Save the theme state to localStorage
+    
+    toggler.onclick = () =>{
+    
+        if(toggler.classList.contains('fa-sun')){
+            toggler.classList.replace('fa-sun', 'fa-moon');
+            document.body.classList.add('active');
+        }else{
+            toggler.classList.replace('fa-moon', 'fa-sun');
+            document.body.classList.remove('active');
+        }
     }
-}

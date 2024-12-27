@@ -1638,10 +1638,7 @@ hr {
     .heading{
         font-size: 3rem;
     }
-    .login-container form {
-        width: 400px; /* Adjust form width */
-        box-shadow: 0 5px 10px var(--Shad); /* Slightly reduce shadow */
-    }
+
 
 }
 
