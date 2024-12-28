@@ -1,7 +1,22 @@
-let cart = [];
-let like = [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let like = JSON.parse(localStorage.getItem("like")) || [];
+let total = parseFloat(localStorage.getItem("total")) || 0;
 
 const cartButtons = document.querySelectorAll(".cart-btn");
+
+if (cart.length === 0){
+    document.getElementById('cart-count').innerText = '';
+}
+else{
+    document.getElementById('cart-count').innerText = cart.length ? cart.length : '';
+}
+
+if (like.length === 0){
+    document.getElementById('like-count').innerText = '';
+}
+else{
+    document.getElementById('like-count').innerText = like.length ? like.length : '';
+}
 
 function viewCart() {
     closeLike();
@@ -47,6 +62,10 @@ function removeFromCart(index) {
     total -= cart[index].price;
     cart.splice(index, 1);
 
+    // Save updated cart and total to localStorage
+    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("total", total);
+
     // Update cart count and total
     if (cart.length === 0){
         document.getElementById('cart-count').innerText = '';
@@ -66,6 +85,11 @@ function checkout() {
         alert('Thank you for your purchase!');
         cart = [];
         total = 0;
+
+         // Save empty cart to localStorage
+         localStorage.setItem("cart", JSON.stringify(cart));
+         localStorage.setItem("total", total);
+
         document.getElementById('cart-count').innerText = '';
         document.getElementById('cart-total').innerText = '0.00';
         viewCart();
@@ -118,10 +142,27 @@ function removeAll() {
     } else {
         alert('Successfully removed all items');
         like = [];
+        localStorage.setItem("like", JSON.stringify(like));
         document.getElementById('like-count').innerText = '';
         viewLike();
     }
     likeSection.style.display = 'none';
+}
+
+function removeFromLike(index) {
+    like.splice(index, 1);
+
+    localStorage.setItem("like", JSON.stringify(like));
+
+    // Update like count and total
+    if (like.length === 0){
+        document.getElementById('like-count').innerText = '';
+    }
+    else{
+        document.getElementById('like-count').innerText = like.length ? like.length : '';
+    }
+
+    viewLike();  // Refresh like view
 }
 
 function closeLike() {
@@ -195,6 +236,7 @@ function closeMore() {
     const aboutPopup = document.querySelector('.about-popup');
     aboutPopup.style.display = 'none';
 }
+
 
 
 let toggler = document.querySelector('#togglerMode');

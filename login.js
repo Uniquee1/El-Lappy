@@ -1,4 +1,5 @@
 const users = JSON.parse(localStorage.getItem("users")) || [];
+let currentUser = localStorage.getItem("username");
 
 function saveUsers(users) {
     localStorage.setItem("users", JSON.stringify(users));
@@ -39,6 +40,8 @@ document.querySelector("#loginForm").addEventListener("submit", function (e) {
 
         // Successful login
         loginMessage.textContent = "Login successful! Redirecting to Home Page...";
+        
+        loadUserData();
 
         // Redirect after 2 seconds
         setTimeout(() => {
@@ -110,6 +113,24 @@ document.querySelector("#addUserForm Form").addEventListener("submit", function 
         addUserSuccessMessage.textContent = "";
     }, 2000);
 });
+
+// Initialize user data on page load
+if (currentUser) {
+    loadUserData();
+}
+
+function loadUserData() {
+    if (currentUser) {
+        cart = JSON.parse(localStorage.getItem(`${currentUser}_cart`)) || [];
+        like = JSON.parse(localStorage.getItem(`${currentUser}_like`)) || [];
+        total = parseFloat(localStorage.getItem(`${currentUser}_total`)) || 0;
+
+        // Update UI counts
+        document.getElementById('cart-count').innerText = cart.length ? cart.length : '';
+        document.getElementById('like-count').innerText = like.length ? like.length : '';
+    }
+}
+
 
 ///////////////
 
@@ -270,6 +291,9 @@ dropdownItem.addEventListener("click", function (e) {
         // Remove the login data from localStorage
         localStorage.removeItem("isLoggedIn");
         localStorage.removeItem("username");
+        cart = [];
+        like=[];
+        total = 0;
 
         // Redirect to login page
         window.location.href = "login.html"; // Redirect to login page
