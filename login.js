@@ -280,6 +280,8 @@ if (isLoggedIn) {
     dropdownItem.href = "#"; // Set link to trigger logout action
 } else {
     // If the user is not logged in, show "Login"
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("username");
     dropdownItem.textContent = "Login";
     dropdownItem.href = "login.html"; // Redirect to login page
 }

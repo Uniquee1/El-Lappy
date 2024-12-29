@@ -40,7 +40,10 @@
         <div class="user-dropdown">
             <a href="" class="fas fa-user"></a>
             <div class="dropdown-menu">
-                <a href="login.html" class="dropdown-item">Logout</a>
+                <div class="dropdown-container">
+                    <h2 id="profile"></h2>
+                    <a href="login.html" class="dropdown-item" id="logout">Logout</a>
+                </div>
             </div>
         </div>
     </div>
@@ -81,15 +84,15 @@
 
 <section class="contact" id="contact">
 
-    <h1 class="heading"> Inquir<span>ies</span></h1>
+    <h1 class="heading"> Send<span> Inquiry</span></h1>
 
     <div class="row">
 
         <form action="">
-            <input type="text" placeholder="name" class="box">
-            <input type="email" placeholder="email" class="box">
-            <input type="number" placeholder="number" class="box">
-            <textarea name="" class="box" placeholder="message" id="" cols="30" rows="10"></textarea>
+            <input type="text" placeholder="Name" class="box">
+            <input type="email" placeholder="Email" class="box">
+            <input type="number" placeholder="Number" class="box">
+            <textarea name="" class="box" placeholder="Message" id="" cols="30" rows="10"></textarea>
             <input type="submit" value="send message" class="btn">
         </form>
 

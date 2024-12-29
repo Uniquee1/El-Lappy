@@ -328,3 +328,7 @@ toggler.onclick = () => {
         localStorage.setItem('theme', 'light'); // Save the theme state to localStorage
     }
 }
+
+window.onload = function() {
+    document.getElementById('profile').innerHTML = `User: ${localStorage.getItem("username")}`;
+ }

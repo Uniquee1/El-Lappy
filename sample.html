@@ -37,7 +37,10 @@
         <div class="user-dropdown">
             <a href="" class="fas fa-user"></a>
             <div class="dropdown-menu">
-                <a href="login.html" class="dropdown-item">Logout</a>
+                <div class="dropdown-container">
+                    <h2 id="profile"></h2>
+                    <a href="login.html" class="dropdown-item" id="logout">Logout</a>
+                </div>
             </div>
         </div>
     </div>
@@ -183,8 +186,11 @@
             cartButton.setAttribute('data-price', productPrice);
 
             likeButton.setAttribute('data-name', productName);
+
+            document.getElementById('profile').innerHTML = `User: ${localStorage.getItem("username")}`;
         }
     };
+
 </script>
 
 </body>

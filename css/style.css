@@ -7,7 +7,7 @@
     --filterCon: invert(0%);
     --semibackG:#eee;
     --Shad:rgba(0,0,0,.1);
-    --headingCol:rgb(255, 210, 28);
+    --headingCol:#f0d300;
     --link: blue;
     --error: red;
     --success: green;
@@ -77,21 +77,60 @@ body.active{
     border: 1px solid var(--Shad);
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    min-width: 100px;
+    min-width: 120px; /* Ensure a minimum width */
+    padding: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
+
+/* Dropdown container with flexible layout */
+.dropdown-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Ensure wrapping if needed */
+    gap: 10px; /* Add spacing between items */
+}
+
+/* Profile styling */
+#profile {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--beige);
+    text-align: left;
+    word-break: break-word; /* Allow breaking long text */
+    max-width: 100%;
+    overflow: hidden; /* Ensure it doesn't overflow the container */
+    text-overflow: ellipsis; /* Show "..." for overflow text */
+}
+
 
 /* Dropdown items */
 .dropdown-item {
-    padding: 2px;
+    font-size: 14px;
+    padding:.5rem 2.5rem;
     text-decoration: none;
-    display: block;
-    color: var(--beige);
-    text-align: center; /* Ensure left-alignment of text */
-    margin-right: 9px;
-    line-height: 1.5; /* Consistent line height */
+    display: inline-block;
     transition: background-color 0.2s ease;
+    white-space: nowrap;
+    border-radius: 5rem;
+    background:#333;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+#logout {
+    color: #fff;
+    font-size: 20px;
+}
+
+#logout:hover{
+    background-color: var(--hoverColor);
+}
 
 .user-dropdown.active .dropdown-menu {
     display: block;
