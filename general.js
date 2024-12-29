@@ -267,5 +267,15 @@ toggler.onclick = () => {
 }
 
 window.onload = function() {
-    document.getElementById('profile').innerHTML = `User: ${localStorage.getItem("username")}`;
+    const username = localStorage.getItem("username");
+    if (username) { // Check if username is not null or empty
+        document.getElementById('profile').innerHTML = `User: ${username}`;
+    }
+    else{
+        cart = [];
+        like=[];
+        total = 0;
+        document.getElementById('like-count').innerText = '';
+        document.getElementById('cart-count').innerText = '';
+    }
  }

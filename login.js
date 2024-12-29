@@ -302,6 +302,24 @@ dropdownItem.addEventListener("click", function (e) {
     }
 });
 
+////////////////////////////////////////////////////
+
+function saveCart() {
+    if (currentUser) {
+        localStorage.setItem(`${currentUser}_cart`, JSON.stringify(cart));
+        localStorage.setItem(`${currentUser}_total`, total);
+        
+    }
+}
+
+function saveLike() {
+    if (currentUser) {
+        localStorage.setItem(`${currentUser}_like`, JSON.stringify(like));
+    }
+}
+
+/////////////////////////////////////////////////
+
 // Toggle the dropdown menu on click of the user icon
 userDropdown.addEventListener('click', function (event) {
     // Prevent page refresh for the user icon click only

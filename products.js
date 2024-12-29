@@ -16,6 +16,7 @@ cartButtons.forEach((button) => {
     button.addEventListener("click", function (e) {
         e.preventDefault();
 
+        if(localStorage.getItem("username")){
         // Get product name and price from data attributes
         const productName = button.getAttribute("data-name");
         const productPrice = parseFloat(button.getAttribute("data-price"));
@@ -34,6 +35,10 @@ cartButtons.forEach((button) => {
 
         alert(productName + ' has been added to your cart!');
         saveCart();
+        }
+        else {
+            window.location.href = "login.html";
+        }
     });
 });
 
@@ -139,25 +144,30 @@ likeButtons.forEach((button) => {
     button.addEventListener("click", function (e) {
         e.preventDefault();
 
-        // Get product name and price from data attributes
-        const productName = button.getAttribute("data-name");
+        if(localStorage.getItem("username")){
+            // Get product name and price from data attributes
+            const productName = button.getAttribute("data-name");
 
-        const alreadyLiked = like.some((item) => item.name === productName);
+            const alreadyLiked = like.some((item) => item.name === productName);
 
-        if (alreadyLiked) {
-            alert(productName + ' is already in your likes!');
-            return; // Exit if already liked
+            if (alreadyLiked) {
+                alert(productName + ' is already in your likes!');
+                return; // Exit if already liked
+            }
+            // Add product to the cart
+            like.push({ name: productName});
+            localStorage.setItem("like", JSON.stringify(like));
+            
+
+            // Update cart count
+            document.getElementById('like-count').innerText = like.length;
+
+            alert(productName + ' has been added to your likes!');
+            saveLike();
         }
-        // Add product to the cart
-        like.push({ name: productName});
-        localStorage.setItem("like", JSON.stringify(like));
-        
-
-        // Update cart count
-        document.getElementById('like-count').innerText = like.length;
-
-        alert(productName + ' has been added to your likes!');
-        saveLike();
+        else{
+            window.location.href = "login.html";
+        }
     });
 });
 
