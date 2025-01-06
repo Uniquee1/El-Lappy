@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Website</title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<!-- header section starts  -->
+
+<header>
+    
+    <input type="checkbox" name="" id="toggler">
+    <label for="toggler" class="fas fa-bars"></label>
+    
+    <a href="index.html" class="logo">El Lappy<span>.</span></a>
+
+    <nav class="navbar">
+        <a href="admin.html">dashboard</a>
+        <a href="inventory.html">Manage inventory</a>
+        <a href="accounts.html">user account</a>
+        <a href="login.html">logout</a>
+    </nav>
+
+    <div id="togglerMode" class="fas fa-sun"></div>
+
+
+</header>
+
+<!-- header section ends -->
+
+     <!-- Product Management Section -->
+    <div class="inventory">
+     <div class="product-management">
+        <h1>Product Inventory</h1>
+    
+        <!-- Add New Product Form -->
+        <div class="add-product-form">
+            <h3>Add/Update Product</h3>
+            <input type="text" id="product-name" placeholder="Product Name" />
+            <input type="number" id="product-quantity" placeholder="Quantity" />
+            <input type="number" id="product-price" placeholder="Price" />
+            <input type="text" id="product-category" placeholder="Category" />
+            <button id="add-product-button">Add/Update Product</button>
+        </div>
+    
+        <!-- Inventory List -->
+        <ul id="product-list">
+            <!-- will contain updated products -->
+        </ul>
+    
+        <!-- Total Price Display -->
+     <div class="totals">
+        <div class="total-price">
+            <h3>Total Inventory Value: $<span id="inventory-total">0.00</span></h3>
+        </div>
+        <div class="product-quantity">
+            <h4>Number of Products: <span id="product-number">0</span></h4>
+            <h4>Total quantity of Products: <span id="product-total">0</span></h4>
+        </div>
+    </div>
+</div>
+</div>
+    
+<script src="script/inventory.js"></script>
+
+</body>
+</html>

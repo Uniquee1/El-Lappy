@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Website</title>
+
+     <!-- font awesome cdn link  -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+     <!-- custom css file link  -->
+     <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    
+    <header>
+    
+        <input type="checkbox" name="" id="toggler">
+        <label for="toggler" class="fas fa-bars"></label>
+        
+        <a href="index.html" class="logo">El Lappy<span>.</span></a>
+    
+        <nav class="navbar">
+            <a href="index.html">home</a>
+            <a href="about.html">about</a>
+            <a href="products.html">products</a>
+            <a href="review.html">review</a>
+            <a href="contact.html">query</a>
+        </nav>
+    
+        <div id="togglerMode" class="fas fa-sun"></div>
+    
+        <div class="icons">
+            <a href="#" onclick="viewLike()" class="fas fa-heart" id="like-count"></a>
+            <a href="#" onclick="viewCart()" class="fas fa-shopping-cart" id="cart-count"></a>
+            <div class="user-dropdown">
+                <a href="" class="fas fa-user"></a>
+                <div class="dropdown-menu">
+                    <div class="dropdown-container">
+                        <h2 id="profile"></h2>
+                        <a href="login.html" class="dropdown-item" id="logout">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </header>
+
+    <!-- cart pop up section starts-->
+
+<section class="cart-section" id="cart-section">
+    <a class="close-cart" onclick="closeCart()">&times;</a>
+    <h2>Your Cart</h2>
+    <ul id="cart-items"></ul>
+    <p id="msg"><b>Wow, such empty...</b></p>
+    <p id="total"><b>Total:</b> $<span id="cart-total">0.00</span></p>
+    <button onclick="checkout()">Checkout</button>
+</section>
+
+<!-- cart pop up section ends-->
+
+<!-- like pop up section starts-->
+
+<section class="like-section" id="like-section">
+    <a class="close-like" onclick="closeLike()">&times;</a>
+    <h2>Your Likes</h2>
+    <ul id="like-items"></ul>
+    <p id="likemsg"><b>Wow, such empty...</b></p>
+    <div class="likeBtn">
+        <button onclick="removeAll()" class="remove">Remove All</button>
+        <button onclick="closeLike()">Done</button>
+    </div>  
+</section>
+
+<!-- like pop up section ends-->
+    
+    <div class="location">
+        <h1 class="heading"> <span> Loca</span>tions</h1>
+        <h1 class="name">PC Express</h1>
+        <ul>
+            <ul class="dropdown">
+                <li><a href="location1.html">Metro Manila</a></li>
+                <li><a href="location2.html">Pangasinan</a></li>
+                <li><a href="location3.html" style="text-decoration: underline;">Cavite</a></li>
+            </ul>
+        </ul>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61827.40915154018!2d120.91541020000003!3d14.414877250000012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d279d9018f57%3A0x4eafee1d738f75f7!2sPC%20Express!5e0!3m2!1sen!2sph!4v1734860070801!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <!--this address does not belong to the creator of this code, it is just used as reference-->
+    </div>
+
+    <!-- footer section starts  -->
+
+<section class="footer">
+
+    <div class="box-container">
+
+        <div class="box">
+            <h3>quick links</h3>
+            <a href="index.html">home</a>
+            <a href="about.html">about</a>
+            <a href="products.html">products</a>
+            <a href="review.html">review</a>
+            <a href="contact.html">query</a>
+        </div>
+
+        <div class="box">
+            <h3>extra links</h3>
+            <a href="login.html">my account</a>
+            <a href="" onclick="viewCart()">my cart</a>
+            <a href="" onclick="viewLike();">my Likes</a>
+        </div>
+
+        <div class="box">
+            <h3>locations</h3>
+            <a href="location1.html">Metro Manila</a>
+            <a href="location2.html">Pangasinan</a>
+            <a href="location3.html">Cavite</a>
+            <a href="location4.html"></a>
+        </div>
+
+        <div class="box">
+            <h3>contact info</h3>
+            <a href="contact.html">+63-945-419-1916</a>
+            <a href="mailto:ellappy@gmail.com">ellappy@gmail.com</a>
+            <a href="contact.html">Batangas, Philippines - 4200</a>
+            <img src="images/payment.png" alt="">
+        </div>
+
+    </div>
+
+    <div class="credit"> created by <span> marc jethro bayaborda</span> | for educational purposes </div>
+
+</section>
+
+<script src="script/general.js"></script>
+    
+</body>
+</html>

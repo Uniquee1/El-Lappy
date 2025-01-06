@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Website</title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<!-- header section starts  -->
+
+<header>
+    
+    <input type="checkbox" name="" id="toggler">
+    <label for="toggler" class="fas fa-bars"></label>
+    
+    <a href="index.html" class="logo">El Lappy<span>.</span></a>
+
+    <nav class="navbar">
+        <a href="index.html">home</a>
+        <a href="about.html">about</a>
+        <a href="products.html">products</a>
+        <a href="review.html">review</a>
+        <a href="contact.html">query</a>
+    </nav>
+
+    <div id="togglerMode" class="fas fa-sun"></div>
+
+    <div class="icons">
+        <a href="#" onclick="viewLike()" class="fas fa-heart" id="like-count"></a>
+        <a href="#" onclick="viewCart()" class="fas fa-shopping-cart" id="cart-count"></a>
+        <div class="user-dropdown">
+            <a href="" class="fas fa-user"></a>
+            <div class="dropdown-menu">
+                <div class="dropdown-container">
+                    <h2 id="profile"></h2>
+                    <a href="login.html" class="dropdown-item" id="logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+
+<!-- header section ends -->
+
+<!-- cart pop up section starts-->
+
+<section class="cart-section" id="cart-section">
+    <a class="close-cart" onclick="closeCart()">&times;</a>
+    <h2>Your Cart</h2>
+    <ul id="cart-items"></ul>
+    <p id="msg"><b>Wow, such empty...</b></p>
+    <p id="total"><b>Total:</b> $<span id="cart-total">0.00</span></p>
+    <button onclick="checkout()">Checkout</button>
+</section>
+
+<!-- cart pop up section ends-->
+
+<!-- like pop up section starts-->
+
+<section class="like-section" id="like-section">
+    <a class="close-like" onclick="closeLike()">&times;</a>
+    <h2>Your Likes</h2>
+    <ul id="like-items"></ul>
+    <p id="likemsg"><b>Wow, such empty...</b></p>
+    <div class="likeBtn">
+        <button onclick="removeAll()" class="remove">Remove All</button>
+        <button onclick="closeLike()">Done</button>
+    </div>  
+</section>
+
+<!-- like pop up section ends-->
+
+<!-- about section starts  -->
+
+<section class="about" id="about">
+
+    <h1 class="heading"> about <span> us </span> </h1>
+
+    <div class="row">
+
+        <div class="video-container">
+            <video src="images/laptop-vid.mp4" loop autoplay muted></video>
+
+        </div>
+
+        <div class="content">
+            <h3>why choose us?</h3>
+            <p>El Lappy delivers cutting-edge tech, sleek designs, and reliable performance for students, professionals, and creators.</p>
+            <p>Affordable, portable, and built to empower—you’re always ready to tackle challenges, unleash creativity, and stay connected with El Lappy.</p>
+            <a href="" class="btn" onclick="viewMore()">learn more</a>
+        </div>
+
+        <div id="about-popup" class="about-popup">
+            <div class="about-popup-content">
+                <span id="about-closePopup" class="about-close-btn" onclick="closeMore()">&times;</span>
+                <h1>Learn More About El Lappy</h1>
+                <p>El Lappy is your go-to brand for cutting-edge laptops designed to meet a wide range of needs, from academic excellence to professional efficiency and creative exploration. With sleek designs, powerful performance, and unmatched portability, El Lappy ensures you stay ahead in every endeavor. Whether you’re a student managing assignments, a professional juggling deadlines, or a creator bringing ideas to life, our laptops are optimized to deliver smooth performance and reliability. With every device, El Lappy combines advanced technology with user-friendly features, empowering you to tackle challenges and unleash your full potential.</p>
+                <p>Finding the perfect laptop has never been easier. At El Lappy, we prioritize your unique requirements and offer personalized recommendations to ensure you get a device that perfectly matches your lifestyle. Whether you need high-end specs for demanding tasks or a budget-friendly option for everyday use, El Lappy has a solution tailored just for you. Reach out to us today and discover why countless individuals trust El Lappy as their partner in achieving their goals. Let us help you take the first step toward a smarter, more connected future.</p>
+                <p>What sets El Lappy apart is our unwavering commitment to customer satisfaction and innovation. Each laptop is meticulously tested and crafted with the highest standards of quality and durability in mind. From extended battery life to responsive customer support, we ensure that owning an El Lappy device is as seamless as using one. Join the El Lappy family and experience the perfect fusion of technology and reliability, designed to empower you every step of the way.</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- about section ends -->
+
+<!-- icons section starts  -->
+
+<section class="icons-container">
+
+    <div class="icons">
+        <img src="images/icon-1.png" alt="">
+        <div class="info">
+            <h3>free delivery</h3>
+            <span>on all orders</span>
+        </div>
+    </div>
+
+    <div class="icons">
+        <img src="images/icon-2.png" alt="">
+        <div class="info">
+            <h3>30 days returns</h3>
+            <span>80% moneyback guarantee</span>
+        </div>
+    </div>
+
+    <div class="icons">
+        <img src="images/icon-3.png" alt="">
+        <div class="info">
+            <h3>offers & gifts</h3>
+            <span>on all orders</span>
+        </div>
+    </div>
+
+    <div class="icons">
+        <img src="images/icon-4.png" alt="">
+        <div class="info">
+            <h3>secure payments</h3>
+            <span>protected by VISA</span>
+        </div>
+    </div>
+   
+</section>
+
+<!-- icons section ends -->
+
+<!-- footer section starts  -->
+
+<section class="footer">
+
+    <div class="box-container">
+
+        <div class="box">
+            <h3>quick links</h3>
+            <a href="index.html">home</a>
+            <a href="about.html">about</a>
+            <a href="products.html">products</a>
+            <a href="review.html">review</a>
+            <a href="contact.html">query</a>
+        </div>
+
+        <div class="box">
+            <h3>extra links</h3>
+            <a href="login.html">my account</a>
+            <a href="" onclick="viewCart()">my cart</a>
+            <a href="" onclick="viewLike();">my Likes</a>
+        </div>
+
+        <div class="box">
+            <h3>locations</h3>
+            <a href="location1.html">Metro Manila</a>
+            <a href="location2.html">Pangasinan</a>
+            <a href="location3.html">Cavite</a>
+            <a href="location4.html"></a>
+        </div>
+
+        <div class="box">
+            <h3>contact info</h3>
+            <a href="contact.html">+63-945-419-1916</a>
+            <a href="mailto:ellappy@gmail.com">ellappy@gmail.com</a>
+            <a href="contact.html">Batangas, Philippines - 4200</a>
+            <img src="images/payment.png" alt="">
+        </div>
+
+    </div>
+
+    <div class="credit"> created by <span> marc jethro bayaborda</span> | for educational purposes </div>
+
+</section>
+
+<script src="script/general.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Website</title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<!-- header section starts  -->
+
+<header>
+    
+    <input type="checkbox" name="" id="toggler">
+    <label for="toggler" class="fas fa-bars"></label>
+    
+    <a href="index.html" class="logo">El Lappy<span>.</span></a>
+
+    <nav class="navbar">
+        <a href="admin.html">dashboard</a>
+        <a href="inventory.html">Manage inventory</a>
+        <a href="accounts.html">user account</a>
+        <a href="login.html">logout</a>
+    </nav>
+
+    <div id="togglerMode" class="fas fa-sun"></div>
+
+
+</header>
+
+<!-- header section ends -->
+
+ <!-- Admin Panel Section -->
+ <div id="admin-panel" class="admin-panel">
+    <div class="admin-container">
+        <h1>Users Account</h1>
+
+        <!-- Add New User Section -->
+        <section id="add-user-section">
+            <h3>Add New User</h3>
+            <input type="text" id="newUsername" class="user-input" placeholder="Username" required>
+            <input type="password" id="newPassword" class="user-input" placeholder="Password" required>
+            <button id="add-user-btn" class="action-button">Add User</button>
+        </section>
+
+        <hr>
+
+        <!-- Modify or Delete Existing User -->
+        <section id="modify-user-section" style="display: none;">
+            <h3>Modify Users</h3>
+            <input type="text" id="modifyUsername" class="user-input" placeholder="Username to modify" required>
+            <input type="password" id="modifiedPassword" class="user-input" placeholder="New Password">
+            <button id="modifyUserBtn" class="action-button">Apply</button>
+        </section>
+
+        <hr>
+
+        <!-- User List -->
+        <section id="user-list-section" class="user-list">
+            <h3>Existing Users</h3>
+            <ul id="userList"></ul>
+        </section>
+    </div>
+</div>
+    
+<script src="script/accounts.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Website</title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<!-- header section starts  -->
+
+<header>
+    
+    <input type="checkbox" name="" id="toggler">
+    <label for="toggler" class="fas fa-bars"></label>
+    
+    <a href="index.html" class="logo">El Lappy<span>.</span></a>
+
+    <nav class="navbar">
+        <a href="index.html">home</a>
+        <a href="about.html">about</a>
+        <a href="products.html">products</a>
+        <a href="review.html">review</a>
+        <a href="contact.html">query</a>
+    </nav>
+
+    <div id="togglerMode" class="fas fa-sun"></div>
+
+    <div class="icons">
+        <a href="#" onclick="viewLike()" class="fas fa-heart" id="like-count"></a>
+        <a href="#" onclick="viewCart()" class="fas fa-shopping-cart" id="cart-count"></a>
+        <div class="user-dropdown">
+            <a href="" class="fas fa-user"></a>
+            <div class="dropdown-menu">
+                <div class="dropdown-container">
+                    <h2 id="profile"></h2>
+                    <a href="login.html" class="dropdown-item" id="logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+
+<!-- header section ends -->
+
+<!-- cart pop up section starts-->
+
+<section class="cart-section" id="cart-section">
+    <a class="close-cart" onclick="closeCart()">&times;</a>
+    <h2>Your Cart</h2>
+    <ul id="cart-items"></ul>
+    <p id="msg"><b>Wow, such empty...</b></p>
+    <p id="total"><b>Total:</b> $<span id="cart-total">0.00</span></p>
+    <button onclick="checkout()">Checkout</button>
+</section>
+
+<!-- cart pop up section ends-->
+
+<!-- like pop up section starts-->
+
+<section class="like-section" id="like-section">
+    <a class="close-like" onclick="closeLike()">&times;</a>
+    <h2>Your Likes</h2>
+    <ul id="like-items"></ul>
+    <p id="likemsg"><b>Wow, such empty...</b></p>
+    <div class="likeBtn">
+        <button onclick="removeAll()" class="remove">Remove All</button>
+        <button onclick="closeLike()">Done</button>
+    </div>  
+</section>
+
+<!-- like pop up section ends-->
+
+<!-- cart pop up section starts-->
+
+<section class="cart-section" id="cart-section">
+    <a class="close-cart" onclick="closeCart()">&times;</a>
+    <h2>Your Cart</h2>
+    <ul id="cart-items"></ul>
+    <p id="msg"><b>Wow, such empty...</b></p>
+    <p id="total"><b>Total:</b> $<span id="cart-total">0.00</span></p>
+    <button onclick="checkout()">Checkout</button>
+</section>
+
+<!-- cart pop up section ends-->
+
+<!-- like pop up section starts-->
+
+<section class="like-section" id="like-section">
+    <a class="close-like" onclick="closeLike()">&times;</a>
+    <h2>Your Likes</h2>
+    <ul id="like-items"></ul>
+    <p id="likemsg"><b>Wow, such empty...</b></p>
+    <div class="likeBtn">
+        <button onclick="removeAll()" class="remove">Remove All</button>
+        <button onclick="closeLike()">Done</button>
+    </div>  
+</section>
+
+<!-- like pop up section ends-->
+
+<!-- login-->
+
+<div class="login-container">
+
+    <div class="loginForm">
+    <form id="loginForm" class="signIn">
+
+        <div class="links">
+            <h3 class="title">sign in with</h3>
+            <div class="buttons">
+                <a href="https://accounts.google.com" class="btn"><i class="fab fa-google"></i> google </a>
+                <a href="https://wwww.facebook.com" class="btn"><i class="fab fa-facebook"></i> facebook </a>
+            </div>
+        </div>
+
+        <div class="input-box">
+            <h3 class="title">or sign in with Username</h3>
+            <div class="input">
+                <span class="fas fa-user-alt"></span>
+                <input type="username" placeholder="Username" id="username">
+            </div>
+            <div class="input">
+                <span class="fa fa-lock"></span>
+                <input type="password" placeholder="Password" id="password">
+            </div>
+            <input type="submit" value="sign in" class="sign-in-btn" id="signIn">
+
+            <div class="signup">
+                <p>Don't Have an account yet?</p>
+                <a href="#" class="sign-up">Sign Up</a>
+            </div>
+
+            <div class="statusMessage">
+                <p class="success" id="loginMessage"></p>
+                <p class="error" id="errorMessage"></p>
+            </div>
+        </div>
+    </form>
+</div>
+
+    <div id="addUserForm">
+    <form>
+
+        <div class="links">
+            <h3 class="title">sign up using</h3>
+            <div class="buttons">
+                <a href="https://accounts.google.com" class="btn"><i class="fab fa-google"></i> google </a>
+                <a href="https://www.facebook.com" class="btn"><i class="fab fa-facebook"></i> facebook </a>
+            </div>
+        </div>
+
+        <div class="input-box">
+            <h3 class="title">or sign up with Username</h3>
+            <div class="input">
+                <span class="fas fa-user-alt"></span>
+                <input type="username" placeholder="Username" id="newUsername">
+            </div>
+            <div class="input">
+                <span class="fa fa-lock"></span>
+                <input type="password" placeholder="Password" id="newPassword">
+            </div>
+            <input type="submit" value="sign up" class="sign-in-btn" id="SignUp">
+
+            <div class="signup">
+                <p>Have an account already?</p>
+                <a href="#" class="sign-in">Sign In</a>
+            </div>
+
+            <div class="statusMessage">
+                <p class="success" id="addUserSuccessMessage"></p>
+                <p class="error" id="addUserErrorMessage"></p>
+            </div>
+        </div>
+    </form>
+    </div>
+</div>
+   
+    
+</div>
+
+<!-- login ends-->
+
+<script src="script/login.js"></script>
+
+</body>
+</html>

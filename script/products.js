@@ -1,0 +1,344 @@
+
+// Load cart and total from localStorage on page load
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let total = parseFloat(localStorage.getItem("total")) || 0;
+
+if (cart.length === 0){
+    document.getElementById('cart-count').innerText = '';
+}
+else{
+    document.getElementById('cart-count').innerText = cart.length ? cart.length : '';
+}
+
+const cartButtons = document.querySelectorAll(".cart-btn");
+
+cartButtons.forEach((button) => {
+    button.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        if(localStorage.getItem("username")){
+        // Get product name and price from data attributes
+        const productName = button.getAttribute("data-name");
+        const productPrice = parseFloat(button.getAttribute("data-price"));
+
+        // Add product to the cart
+        cart.push({ name: productName, price: productPrice });
+        total += productPrice;
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+        localStorage.setItem("total", total);
+
+        
+
+        // Update cart count
+        document.getElementById('cart-count').innerText = cart.length;
+
+        alert(productName + ' has been added to your cart!');
+        saveCart();
+        }
+        else {
+            window.location.href = "login.html";
+        }
+    });
+});
+
+function viewCart() {
+    closeLike();
+    // Display the cart section
+    let cartSection = document.getElementById('cart-section');
+    let cartItems = document.getElementById('cart-items');
+    let cartTotal = document.getElementById('cart-total');
+    let cartMsg = document.getElementById('msg');
+    let cartTotalText = document.getElementById('total');
+
+    // Clear current cart items
+    cartItems.innerHTML = '';
+
+    if(cart.length > 0){
+        cartMsg.style.display = 'none';
+        cartTotalText.style.display = 'block';
+    }
+    else{
+        cartMsg.style.display = 'block';
+        cartTotalText.style.display = 'none';
+    }
+
+    // Add all items in the cart
+    cart.forEach((item, index) => {
+        let li = document.createElement('li');
+        li.innerHTML = `${item.name} - $${item.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} <button onclick="removeFromCart(${index})">Remove</button>`;
+        cartItems.appendChild(li);
+    });
+
+    // Update total price
+
+    cartTotal.innerText = total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+    // Show cart section
+    cartSection.style.display = 'block';
+
+    // Prevent default behavior if this is triggered by a link or button
+    event?.preventDefault?.(); 
+}
+
+function removeFromCart(index) {
+    // Remove the selected item from the cart
+    total -= cart[index].price;
+    cart.splice(index, 1);
+
+    
+
+     // Save to localStorage
+     localStorage.setItem("cart", JSON.stringify(cart));
+     localStorage.setItem("total", total);
+
+    // Update cart count and total
+    if (cart.length === 0){
+        document.getElementById('cart-count').innerText = '';
+    }
+    else{
+        document.getElementById('cart-count').innerText = cart.length ? cart.length : '';
+    }
+
+    viewCart();  // Refresh cart view
+    saveCart();
+}
+
+function checkout() {
+    const cartSection = document.querySelector('.cart-section');
+    if (cart.length === 0) {
+        alert('Your cart is empty!');
+        cartSection.style.display = 'none';
+    } else {
+        alert('Thank you for your purchase!');
+        cart = [];
+        total = 0;
+        localStorage.setItem("cart", JSON.stringify(cart));
+        localStorage.setItem("total", total);
+
+        document.getElementById('cart-count').innerText = '';
+        document.getElementById('cart-total').innerText = '0.00';
+        cartSection.style.display = 'none';
+        saveCart();
+    }
+}
+
+function closeCart() {
+    const cartSection = document.querySelector('.cart-section');
+    cartSection.style.display = 'none';
+}
+
+
+let like = JSON.parse(localStorage.getItem("like")) || [];
+
+if (like.length === 0){
+    document.getElementById('like-count').innerText = '';
+}
+else{
+    document.getElementById('like-count').innerText = like.length ? like.length : '';
+}
+
+const likeButtons = document.querySelectorAll("#like-btn");
+
+likeButtons.forEach((button) => {
+    button.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        if(localStorage.getItem("username")){
+            // Get product name and price from data attributes
+            const productName = button.getAttribute("data-name");
+
+            const alreadyLiked = like.some((item) => item.name === productName);
+
+            if (alreadyLiked) {
+                alert(productName + ' is already in your likes!');
+                return; // Exit if already liked
+            }
+            // Add product to the cart
+            like.push({ name: productName});
+            localStorage.setItem("like", JSON.stringify(like));
+            
+
+            // Update cart count
+            document.getElementById('like-count').innerText = like.length;
+
+            alert(productName + ' has been added to your likes!');
+            saveLike();
+        }
+        else{
+            window.location.href = "login.html";
+        }
+    });
+});
+
+function viewLike() {
+    closeCart();
+
+    // Display the like section
+    let likeSection = document.getElementById('like-section');
+    let likeItems = document.getElementById('like-items');
+    let likeMsg = document.getElementById('likemsg');
+
+    // Clear current like items
+    likeItems.innerHTML = '';
+
+    if(like.length > 0){
+        likeMsg.style.display = 'none';
+    }
+    else{
+        likeMsg.style.display = 'block';
+    }
+    // Add all items in the like
+    like.forEach((item, index) => {
+        let li = document.createElement('li');
+        li.innerHTML = `${item.name} <button onclick="removeFromLike(${index})">Remove</button>`;
+        likeItems.appendChild(li);
+    });
+
+    // Show like section
+    likeSection.style.display = 'block';
+
+    // Prevent default behavior if this is triggered by a link or button
+    event?.preventDefault?.(); 
+}
+
+function removeFromLike(index) {
+    like.splice(index, 1);
+
+    localStorage.setItem("like", JSON.stringify(like));
+    viewLike();
+
+    // Update like count and total
+    if (like.length === 0){
+        document.getElementById('like-count').innerText = '';
+    }
+    else{
+        document.getElementById('like-count').innerText = like.length ? like.length : '';
+    }
+
+    saveLike();
+}
+
+function removeAll() {
+    const likeSection = document.querySelector('.like-section');
+    if (like.length === 0) {
+        alert('Your likes is empty!');
+        likeSection.style.display = 'none';
+    } else {
+        alert('Successfully removed all items');
+        like = [];
+        localStorage.setItem("like", JSON.stringify(like));
+        document.getElementById('like-count').innerText = '';
+        likeSection.style.display = 'none';
+        saveLike();
+    }
+    
+}
+
+function closeLike() {
+    const likeSection = document.querySelector('.like-section');
+    likeSection.style.display = 'none';
+}
+
+//////////////////////////////////////////////
+function saveCart() {
+    if (currentUser) {
+        localStorage.setItem(`${currentUser}_cart`, JSON.stringify(cart));
+        localStorage.setItem(`${currentUser}_total`, total);
+        
+    }
+}
+
+function saveLike() {
+    if (currentUser) {
+        localStorage.setItem(`${currentUser}_like`, JSON.stringify(like));
+    }
+}
+
+///////////////////////////////////////////////
+
+
+// Select the dropdown toggle and menu
+// Select the dropdown toggle and menu
+const isLoggedIn = localStorage.getItem("isLoggedIn");
+const userDropdown = document.querySelector('.user-dropdown');
+const dropdownMenu = document.querySelector('.dropdown-menu');
+const dropdownItem = document.querySelector(".dropdown-item");
+
+// Check login status and update dropdown text
+if (isLoggedIn) {
+    // If the user is logged in, show "Logout"
+    dropdownItem.textContent = "Logout";
+    dropdownItem.href = "#"; // Set link to trigger logout action
+} else {
+    // If the user is not logged in, show "Login"
+    dropdownItem.textContent = "Login";
+    dropdownItem.href = "login.html"; // Redirect to login page
+}
+
+// Add event listener for logout
+dropdownItem.addEventListener("click", function (e) {
+    if (isLoggedIn) {
+        e.preventDefault(); // Prevent default behavior (if logout)
+        // Remove the login data from localStorage
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("username");
+
+        // Redirect to login page
+        window.location.href = "login.html"; // Redirect to login page
+    }
+});
+
+// Toggle the dropdown menu on click of the user icon
+userDropdown.addEventListener('click', function (event) {
+    // Prevent page refresh for the user icon click only
+    const target = event.target;
+    if (target.tagName === 'A' && target.classList.contains('fa-user')) {
+        event.preventDefault();
+    }
+
+    event.stopPropagation(); 
+    this.classList.toggle('active'); 
+});
+
+// Close the dropdown when clicking outside of it
+document.addEventListener('click', function () {
+    userDropdown.classList.remove('active'); 
+    
+});
+
+function setProductImage(imageSrc) {
+    localStorage.setItem('selectedProductImage', imageSrc); // Store the image URL in localStorage
+    window.location.href = 'single-product.html'; // Redirect to single product page
+}
+
+let toggler = document.querySelector('#togglerMode');
+
+// Check the saved theme state from localStorage when the page loads
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme === 'dark') {
+    document.body.classList.add('active');
+    toggler.classList.replace('fa-sun', 'fa-moon');
+} else {
+    document.body.classList.remove('active');
+    toggler.classList.replace('fa-moon', 'fa-sun');
+}
+
+// Toggle the theme when the user clicks the icon
+toggler.onclick = () => {
+    if (toggler.classList.contains('fa-sun')) {
+        // Switch to dark mode
+        toggler.classList.replace('fa-sun', 'fa-moon');
+        document.body.classList.add('active');
+        localStorage.setItem('theme', 'dark'); // Save the theme state to localStorage
+    } else {
+        // Switch to light mode
+        toggler.classList.replace('fa-moon', 'fa-sun');
+        document.body.classList.remove('active');
+        localStorage.setItem('theme', 'light'); // Save the theme state to localStorage
+    }
+}
+
+window.onload = function() {
+    document.getElementById('profile').innerHTML = `User: ${localStorage.getItem("username")}`;
+ }

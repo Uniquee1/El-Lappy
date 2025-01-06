@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Website</title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<!-- header section starts  -->
+
+<header>
+    
+    <input type="checkbox" name="" id="toggler">
+    <label for="toggler" class="fas fa-bars"></label>
+    
+    <a href="index.html" class="logo">El Lappy<span>.</span></a>
+
+    <nav class="navbar">
+        <a href="admin.html">Dashboard</a>
+        <a href="inventory.html">Manage inventory</a>
+        <a href="accounts.html">user accounts</a>
+        <a href="login.html">logout</a>
+    </nav>
+
+    <div id="togglerMode" class="fas fa-sun"></div>
+
+
+</header>
+
+<!-- header section ends -->
+
+<section class="dashboard">
+    <div class="dashboard-container">
+        <h1>Welcome to the Dashboard</h1>
+        <div class="cards">
+            <div class="card">
+                <h2>Inventory</h2>
+                <p>View and manage inventory records.</p>
+                <a href="inventory.html" class="adminbtn">Manage Inventory</a>
+            </div>
+            <div class="card">
+                <h2>User Accounts</h2>
+                <p>Manage user accounts and roles.</p>
+                <a href="accounts.html" class="adminbtn">Manage Accounts</a>
+            </div>
+            <div class="card">
+                <h2>Logout</h2>
+                <p>Exit the dashboard securely.</p>
+                <a href="login.html" class="adminbtn">Logout</a>
+            </div>
+        </div>
+    </div>
+</section>
+    
+<script>
+
+let toggler = document.querySelector('#togglerMode');
+
+// Check the saved theme state from localStorage when the page loads
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme === 'dark') {
+    document.body.classList.add('active');
+    toggler.classList.replace('fa-sun', 'fa-moon');
+} else {
+    document.body.classList.remove('active');
+    toggler.classList.replace('fa-moon', 'fa-sun');
+}
+
+// Toggle the theme when the user clicks the icon
+toggler.onclick = () => {
+    if (toggler.classList.contains('fa-sun')) {
+        // Switch to dark mode
+        toggler.classList.replace('fa-sun', 'fa-moon');
+        document.body.classList.add('active');
+        localStorage.setItem('theme', 'dark'); // Save the theme state to localStorage
+    } else {
+        // Switch to light mode
+        toggler.classList.replace('fa-moon', 'fa-sun');
+        document.body.classList.remove('active');
+        localStorage.setItem('theme', 'light'); // Save the theme state to localStorage
+    }
+}
+</script>
+
+</body>
+</html>

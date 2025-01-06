@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bayaborda Portfolio</title>
+
+  <!-- font awesome cdn link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <link rel="stylesheet" href="css/portfolio.css" />
+
+</head>
+<body>
+
+  <header>
+
+    <input type="checkbox" name="" id="toggler">
+    <label for="toggler" class="fas fa-bars"></label>
+    
+    <a href="portfolio.html" class="logo">Marc Jethro Bayaborda</a>
+
+    <nav class="navbar">
+        <a href="#profile">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+  </header>
+
+  <section id="profile">
+    <div class="section__pic-container">
+      <img src="images/assets/profile-pic.png" alt="Marc Jethro Bayaborda profile picture" />
+    </div>
+    <div class="section__text">
+      <p class="section__text__p1">Hello, I'm</p>
+      <h1 class="title">Marc Jethro Bayaborda</h1>
+      <p class="section__text__p2">BSIT 3A Student</p>
+      <div id="socials-container">
+        <img
+          src="images/assets/facebook.png"
+          alt="My LinkedIn profile"
+          class="icon"
+          onclick="window.open('https://www.facebook.com/share/1XR4XMYV7Z/')"
+        />
+        <img
+          src="images/assets/github.png"
+          alt="My Github profile"
+          class="icon"
+          onclick="window.open('https://github.com/Uniquee1')"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h1 class="title">About Me</h1>
+    <div class="section-container">
+      <div class="about-details-container">
+        <div class="about-containers">
+          <div class="details-container">
+            <img src="images/assets/experience.png" alt="Experience icon" class="icon"/>
+            <h3>Experience</h3>
+            <p>3 years <br />College Student</p>
+          </div>
+          <div class="details-container">
+            <img src="images/assets/education.png" alt="Education icon" class="icon"/>
+            <h3>Education</h3>
+            <p>Bachelor of Science in <br> Information Technology</p>
+          </div>
+        </div>
+        <div class="text-container">
+          <p>My full name is <b>Marc Jethro Bayaborda</b>. 
+            I was born on <b> November 18, 2003</b>. 
+            I am from <b>Talisay, Calatagan, Batangas</b>.
+            One of my defining traits is my passion for solving problems.
+            I thrive on challenges that require creative thinking and logical reasoning, 
+            whether it's cracking a complex puzzle, troubleshooting a technical issue, or 
+            brainstorming innovative solutions to everyday situations. 
+            This trait fuels my curiosity and motivates me to approach obstacles with 
+            persistence and an open mind. I find great satisfaction in breaking down 
+            problems into manageable parts and working systematically toward a resolution. 
+            For me, every problem is an opportunity to learn, grow, and make a positive impact.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="projects">
+    <h1 class="title">Projects</h1>
+    <div class="experience-details-container">
+      <div class="about-containers">
+        <div class="details-container color-container">
+
+          <div class="article-container">
+            <img src="images/assets/project1.png"alt="E-commerce Website"class="project-img"/>
+          </div>
+
+          <h2 class="experience-sub-title project-title">E-commerce Website: El Lappy</h2>
+          <div class="btn-container">
+            <button class="btn btn-color-2 project-btn" onclick="window.open('https://github.com/Uniquee1/El-Lappy')">Github</button>
+            <button class="btn btn-color-2 project-btn" onclick="window.location.href='index.html';">Demo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h1 class="title">Contact Me</h1>
+    <div class="contact-info-upper-container">
+      <div class="contact-info-container">
+        <img
+          src="images/assets/email.png"
+          alt="Email icon"
+          class="icon contact-icon email-icon"
+        />
+        <p><a href="mailto:marcjethrobayaborda@lpubatangas.edu.ph">marcjethrobayaborda@lpubatangas.edu.ph</a></p>
+      </div>
+      <div class="contact-info-container">
+        <img
+          src="images/assets/facebook.png"
+          alt="LinkedIn icon"
+          class="icon contact-icon"
+        />
+        <p><a href="https://www.facebook.com/share/1XR4XMYV7Z/">Facebook</a></p>
+      </div>
+    </div>
+  </section>
+  <footer>
+      <a href="#" class="reset">Go back to top</a>
+
+    <p>Copyright &#169; 2025 Marc Jethro Bayaborda. All Rights Reserved.</p>
+  </footer>
+  <script src="script/portfolio.js"></script>
+</body>
+</html>
