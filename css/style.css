@@ -788,8 +788,6 @@ header .fa-bars{
     color: red;
 }
 
-
-
 .products {
     background:var(--backG);
     padding-top: 9rem;
@@ -891,6 +889,52 @@ header .fa-bars{
     text-decoration: line-through;
 }
 
+.filter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-radius: 5px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-left: 0;
+    padding: 0;
+}
+
+#search-input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid var(--borderColor);
+    border-radius: 5px;
+    background-color: var(--semibackG);
+    color: var(--beige);
+}
+
+#search-button {
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color: var(--link);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#search-button:hover {
+    background-color: #1f79da;
+}
+
+.category-container select {
+    padding: 10px;
+    border: 1px solid var(--borderColor);
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: var(--semibackG);
+    color: var(--beige);
+}
 
 .single-product {
     position: relative; /* This makes the back button align inside this container */
@@ -1839,6 +1883,15 @@ hr {
         font-size: 10px;
     }
 
+    .filter-bar {
+        flex-direction: column; /* Stacks items vertically */
+        align-items: stretch; /* Ensures items take full width */
+        gap: 15px; /* Adds spacing between stacked elements */
+    }
+
+    .search-bar input {
+        width: 100%; /* Full width for smaller screens */
+    }
 
     .adminbtn {
         max-width: 300px;

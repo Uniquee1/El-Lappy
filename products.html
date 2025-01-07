@@ -86,9 +86,25 @@
 
     <h1 class="heading"> latest <span>products</span> </h1>
 
-    <div class="box-container">
+    <section class="filter-bar">
+        <section class="search-bar">
+            <input type="text" id="search-input" placeholder="Search products...">
+            <button id="search-button" onclick="filterProducts()">Search</button>
+        </section>
 
-        <div class="box">
+        <div class="category-container">
+            <select id="category-filter" onchange="filterByCategory()">
+                <option value="all">All Categories</option>
+                <option value="gaming">Gaming</option>
+                <option value="office">Office</option>
+                <option value="home">Home</option>
+            </select>
+        </div>
+    </section>
+
+    <div class="box-container" id="products-section">
+
+        <div class="box" data-name="CyberSwift" data-category="gaming">
             <span class="discount">-10%</span>
             <div class="image" >
                 <a href="sample.html?image=images/laptop/1.jpg&data-name=CyberSwift&data-price=1227.00">
@@ -106,7 +122,7 @@
             </div>
         </div>
 
-        <div class="box">
+        <div class="box" data-name="PixelForge" data-category="gaming">
             <span class="discount">-15%</span>
             <div class="image">
                 <a href="sample.html?image=images/laptop/2.jpg&data-name=PixelForge&data-price=731.00">
@@ -124,7 +140,7 @@
             </div>
         </div>
 
-        <div class="box">
+        <div class="box" data-name="NovaEdge" data-category="gaming">
             <span class="discount">-5%</span>
             <div class="image">
                 <a href="sample.html?image=images/laptop/3.jpg&data-name=NovaEdge&data-price=1520.00">
@@ -142,10 +158,10 @@
             </div>
         </div>
 
-        <div class="box">
+        <div class="box" data-name="TechVantage" data-category="office">
             <span class="discount">-20%</span>
             <div class="image">
-           ////     <a href="sample.html?image=images/laptop/4.jpg&data-name=TechVantage&data-price=640.00">
+                <a href="sample.html?image=images/laptop/4.jpg&data-name=TechVantage&data-price=640.00">
                     <img src="images/laptop/4.jpg" alt="">
                 </a>
                 <div class="icons">
@@ -160,7 +176,7 @@
             </div>
         </div>
 
-        <div class="box">
+        <div class="box" data-name="AeroBook" data-category="office">
             <span class="discount">-17%</span>
             <div class="image">
                 <a href="sample.html?image=images/laptop/5.jpg&data-name=AeroBook&data-price=415.00">
@@ -178,7 +194,7 @@
             </div>
         </div>
 
-        <div class="box">
+        <div class="box" data-name="QuantumCraft" data-category="office">
             <span class="discount">-3%</span>
             <div class="image">
                 <a href="sample.html?image=images/laptop/6.jpg&data-name=QuantumCraft&data-price=470.00">
@@ -196,7 +212,7 @@
             </div>
         </div>
 
-        <div class="box">
+        <div class="box" data-name="ZenCore" data-category="home">
             <span class="discount">-18%</span>
             <div class="image">
                 <a href="sample.html?image=images/laptop/7.jpg&data-name=ZenCore&data-price=590.99">
@@ -214,7 +230,7 @@
             </div>
         </div>
 
-        <div class="box">
+        <div class="box" data-name="InfinityPad" data-category="home">
             <span class="discount">-10%</span>
             <div class="image">
                 <a href="sample.html?image=images/laptop/8.jpg&data-name=InfinityPad&data-price=810.00">
@@ -232,7 +248,7 @@
             </div>
         </div>
 
-        <div class="box">
+        <div class="box" data-name="VortexPro" data-category="home">
             <span class="discount">-5%</span>
             <div class="image">
                 <a href="sample.html?image=images/laptop/9.jpg&data-name=VortexPro&data-price=427.99">

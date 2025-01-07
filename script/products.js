@@ -324,6 +324,39 @@ if (currentTheme === 'dark') {
     toggler.classList.replace('fa-moon', 'fa-sun');
 }
 
+
+//////////////////////////////////////////
+
+function filterProducts() {
+    const searchInput = document.getElementById('search-input').value.toLowerCase();
+    const productBoxes = document.querySelectorAll('.box-container .box');
+
+    productBoxes.forEach(box => {
+        const productName = box.getAttribute('data-name').toLowerCase();
+        if (productName.includes(searchInput)) {
+            box.style.display = 'block';
+        } else {
+            box.style.display = 'none';
+        }
+    });
+}
+
+function filterByCategory() {
+    const selectedCategory = document.getElementById('category-filter').value;
+    const productBoxes = document.querySelectorAll('#products-section .box');
+
+    productBoxes.forEach(box => {
+        const productCategory = box.getAttribute('data-category');
+        if (selectedCategory === 'all' || productCategory === selectedCategory) {
+            box.style.display = 'block';
+        } else {
+            box.style.display = 'none';
+        }
+    });
+}
+
+//////////////////////////////////////
+
 // Toggle the theme when the user clicks the icon
 toggler.onclick = () => {
     if (toggler.classList.contains('fa-sun')) {
